@@ -1,0 +1,134 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.banking</groupId>
+  <artifactId>ParaBankCucumber</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+
+   <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>7.18.1</version>
+</dependency>
+
+ <dependency>
+    <groupId>net.masterthought</groupId>
+    <artifactId>cucumber-reporting</artifactId>
+    <version>5.7.0</version>
+</dependency>
+
+
+    <!-- Cucumber Reporting Plugin -->
+    <dependency>
+        <groupId>net.masterthought</groupId>
+        <artifactId>cucumber-reporting</artifactId>
+        <version>5.7.0</version>
+    </dependency>
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>7.18.1</version>
+    <scope>test</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.23.1</version>
+</dependency>
+
+	<dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v113</artifactId>
+            <version>4.9.1</version>
+        </dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>4.1.2</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.7</version>
+</dependency>		
+	</dependencies>
+	
+	<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+                <parallel>methods</parallel>
+                <threadCount>4</threadCount> <!-- Adjust thread count as needed -->
+            </configuration>
+        </plugin>
+        
+        <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>cucumber-reporting</artifactId>
+                <version>5.7.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <projectName>Parallel Cucumber Project</projectName>
+                    <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
+                    <buildNumber>1</buildNumber>
+                    <parallelTesting>true</parallelTesting>
+                </configuration>
+            </plugin>
+            
+    </plugins>
+</build>
+
+<profiles>
+        <profile>
+            <id>cucumber-parallel</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.temyers</groupId>
+                        <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+                        <version>5.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>generateRunners</id>
+                                <phase>generate-test-sources</phase>
+                                <goals>
+                                    <goal>generateRunners</goal>
+                                </goals>
+                                <configuration>
+                                    <glue>com.example.stepdefinitions</glue> <!-- Your step definition package -->
+                                    <featureFilesDirectory>src/test/resources/features</featureFilesDirectory>
+                                    <outputDirectory>target/generated-test-sources/cucumber</outputDirectory>
+                                    <parallelScheme>SCENARIO</parallelScheme> <!-- Parallel execution at the scenario level -->
+                                    <format>pretty</format>
+                                    <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+  
+</project>
