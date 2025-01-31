@@ -65,29 +65,8 @@
                 <threadCount>4</threadCount> <!-- Adjust thread count as needed -->
             </configuration>
         </plugin>
-        
-        <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>cucumber-reporting</artifactId>
-                <version>5.7.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <projectName>Parallel Cucumber Project</projectName>
-                    <outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
-                    <buildNumber>1</buildNumber>
-                    <parallelTesting>true</parallelTesting>
-                </configuration>
-            </plugin>
-            
-    </plugins>
+            </plugins>       
+       
 </build>
 
 <profiles>
