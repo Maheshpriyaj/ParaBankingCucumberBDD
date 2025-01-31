@@ -13,19 +13,11 @@
     <version>7.18.1</version>
 </dependency>
 
- <dependency>
+<dependency>
     <groupId>net.masterthought</groupId>
     <artifactId>cucumber-reporting</artifactId>
-    <version>5.7.0</version>
+    <version>5.8.4</version>
 </dependency>
-
-
-    <!-- Cucumber Reporting Plugin -->
-    <dependency>
-        <groupId>net.masterthought</groupId>
-        <artifactId>cucumber-reporting</artifactId>
-        <version>5.7.0</version>
-    </dependency>
 
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 <dependency>
